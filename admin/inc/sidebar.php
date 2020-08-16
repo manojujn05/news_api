@@ -116,16 +116,16 @@
 								
 	                        </li>
 							
-							<li class="nav-item <?php if($page=='corona_cases'){ echo 'active';}?>">
+							<li class="nav-item <?php if($page=='manage_users'){ echo 'active';}?>">
 	                            <a href="#" class="nav-link nav-toggle">
 	                                <i class="material-icons">assignment_turned_in</i>
-	                                <span class="title">Corona cases</span>
+	                                <span class="title">Manage Users</span>
 	                                <span class="arrow"></span>
 	                            </a>
 	                            <ul class="sub-menu">
 	                                <li class="nav-item">
-	                                    <a href="add-cities.php" class="nav-link ">
-	                                        <span class="title" <?php if($page=='corona_cases'){?> style="color:white;" <?php }?>>Update cases</span>
+	                                    <a href="manage-users.php" class="nav-link ">
+	                                        <span class="title" <?php if($page=='manage_users'){?> style="color:white;" <?php }?>>Update users</span>
 	                                    </a>
 	                                </li>
 	                              

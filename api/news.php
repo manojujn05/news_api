@@ -23,24 +23,26 @@ $sql = "SELECT guide,category_name, title, description, image_type, image, sourc
 
 $result = mysqli_query($conn,$sql);
 $images = array();
+
 if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
-            $news[] = $row;  
+            //$news[] = $row;  
             // print_r($row);
             if($row['image_type'] == 3)
             {
+              
                 $imgs_sql = "SELECT image from gallery where news_id =".$row['guide'];
                 $imgs_res = mysqli_query($conn,$imgs_sql);
-                while ($imgs = mysqli_fetch_assoc($imgs_res)) {
-                    $images[] = $imgs; 
+                while ($imgs = mysqli_fetch_row($imgs_res)) {
+                    $images[] = $imgs;
                 }
-                if(count($images) > 0){
-                array_push($news,$images);
-                }
+               $row= array_merge($row,$images);
             }
+            
+            $news[] = $row;  
         }
         
-        //print_r($news);
+        // print_r($news);
         $response = array(
             "type" => "success",
             "message" => "News listing",

@@ -14,12 +14,14 @@ if(isset($_GET['state'])) {
     $state_sql = "and state = '$state'";
 }   
 if(isset($_GET['lang'])) {
-    $lang = $_GET['lang'];
-}   
+    $lang  = $_GET['lang'];
+    $lang_sql  = "and language = '$lang'";
+}  
+  
 
 include_once '../db.php';
 //getting the values 
-$sql = "SELECT guide,category_name, title, description, image_type, image, source_title, source_link, videourl, city, state, postdate FROM `news`, category WHERE news.category_id = category.id ". $city_sql . $state_sql ."order by guide";
+$sql = "SELECT guide,category_name, title, description, image_type, image, source_title, source_link, videourl, city, state, postdate FROM `news`, category WHERE news.category_id = category.id and publish = 1  ". $city_sql . $state_sql ."order by guide";
 
 $result = mysqli_query($conn,$sql);
 $images = array();
@@ -42,7 +44,7 @@ if (mysqli_num_rows($result) > 0) {
             $news[] = $row;  
         }
         
-        // print_r($news);
+         print_r($news);
         $response = array(
             "type" => "success",
             "message" => "News listing",

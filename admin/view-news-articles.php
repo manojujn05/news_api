@@ -36,8 +36,24 @@
 					echo "<script type='text/javascript'>document.location.href='{$b_url}';</script>";
 					}
 					}
-					
-					
+
+					if($action=='publish')
+					{
+					$q3="UPDATE news set publish=1 where guide='$nid'";
+					$d3=mysqli_query($con,$q3);
+					if($d3)
+					{
+					echo "<script>alert('News Published successfully !!')</script>";
+					$b_url="view-news-articles.php";
+					echo "<script type='text/javascript'>document.location.href='{$b_url}';</script>";
+					}
+					else
+					{
+					echo "<script>alert('Unable to publish, Something went wrong !!')</script>";
+					$b_url="view-news-articles.php";
+					echo "<script type='text/javascript'>document.location.href='{$b_url}';</script>";
+					}
+					}
 			}
 
 			
@@ -107,18 +123,7 @@
                         </div>
                     </div>
               
-<div class="row">
-
-
-
-
-
-
-
-                        
-							
-							
-							
+					<div class="row">					
 							
 							<div class="col-md-12">
 								 <div class="card card-topline-aqua">
@@ -135,7 +140,7 @@
 																	  <th>Thumbnail</th>
 																	  <th>News Title</th>
 																	  <th>Category</th>
-																	  <th>News</th>
+																	  <th></th>
 																	  <th>Action</th>
 																	 </tr>
 																  </thead>
@@ -156,11 +161,17 @@
 													  <td><?php echo $row['title'];?></td>  
 													  <td><?php echo $row['category_name'];?></td>
 													
+													  <td> <a href="view-news-articles.php?nid=<?php echo $row['guide']?>&action=publish"> 
+													  <?php if($row['publish'] == 1){ ?> 
+														<button id='publish'class="btn btn-xs btn-danger">Unpublish</button>
+													  <?php }else{ ?> 
+														<button id='publish'class="btn btn-xs btn-success">Publish</button>
+						     						  <?php } ?> 	
+													 </a></td>
 													  <td><a href="show-news.php?nid=<?php echo $row['guide']?>">
 													  <button class="btn btn-xs btn-primary">Show News</button></a></td>
-													
 													  
-													  <td><a href="add-gallery.php?nid=<?php echo $row['guide']?>"><button class="btn btn-xs btn-primary">Add Gallery</button></a> </td>
+													  <td><a href="add-gallery.php?nid=<?php echo $row['guide']?>"><button class="btn btn-xs btn-secondary">Add Gallery</button></a> </td>
 													  <td><a href="view-news-articles.php?nid=<?php echo $row['guide']?>&action=delete" onclick="return confirm('Are you sure want to delete?')"><button class="btn btn-xs btn-danger">Delete</button></a></td> 
 													  <td><a href="edit-news-articles.php?nid=<?php echo $row['guide']?>&action=edit" ><button class="btn btn-xs btn-primary">Edit</button></a></td> 
 													  <td><a href="getJsonNotification.php?guid=<?php echo $row['guide']?>" target="_blank"><button class="btn btn-xs btn-warning">Get Json</button></a></td> 
@@ -180,9 +191,6 @@
                                     </div>
                                 </div>
                             </div>
-							
-							
-							
 							</div>								
 							</div>
 							</div>
@@ -190,12 +198,6 @@
                 </div>
             </div>
             <!-- end page content -->
-                   
-                     
-					 
-                     
-                    
-                
             </div>
             <!-- end page content -->
             <?php
@@ -207,6 +209,7 @@
 				require('inc/footer.php');
 		?>
     </div>
+
     <!-- start js include path -->
     <script src="assets/plugins/jquery/jquery.min.js" ></script>
     <script src="assets/plugins/popper/popper.min.js" ></script>
@@ -228,5 +231,7 @@
     <script src="assets/plugins/morris/morris.min.js" ></script>
     <script src="assets/plugins/morris/raphael-min.js" ></script>
     <script src="assets/js/pages/chart/morris/morris_home_data.js" ></script>
-    <!-- end js include path -->  </body>
+
+	
+</body>
 </html>

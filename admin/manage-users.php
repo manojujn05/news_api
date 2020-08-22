@@ -112,6 +112,7 @@
 																	<tr>
 																	  <th>Id</th>
 																	  <th>Name</th>
+																	  <th>Points</th>
 																	  <th>Delete</th>
 																	 </tr>
 																  </thead>
@@ -127,6 +128,7 @@
 															 <tr>
                   
 													  <td><?php echo $row['Id'];?></td>
+													  <td><?php echo $row['points'];?></td>
 													  <td><?php echo $row['name'];?></td>
 													  <td><a href="manage-users.php?cid=<?php echo $row['Id']?>&action=delete" onclick="return confirm('Are you sure want to delete?')">Delete</a></td> 
 													  

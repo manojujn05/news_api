@@ -26,7 +26,7 @@
 					
 						if(move_uploaded_file($_FILES['img']['tmp_name'], $file_path))
 						{
-						$q1="INSERT INTO `news`(title,city,image,category_id,source_title,source_link,videourl,image_type,description,postdate) VALUES ('$title','$city','$img','$cat','$source','$source_link','$videourl','$img_type','$desc','$today')";
+						$q1="INSERT INTO `news`(title,city,image,category_id,source_title,source_link,videourl,image_type,description,postdate, language) VALUES ('$title','$city','$img','$cat','$source','$source_link','$videourl','$img_type','$desc','$today','$language')";
 						
 						$d1=mysqli_query($con,$q1) or die(mysqli_error($con));
 						if($d1)
@@ -38,9 +38,7 @@
 						}
 					
 			}
-			
-			
-			
+		
 ?>
 
 <html lang="en">
@@ -108,13 +106,8 @@
                         </div>
                     </div>
               
-<div class="row">
-                        
-							
-							
-							
-							
-							<div class="col-md-12">
+					<div class="row">
+ 							<div class="col-md-12">
 								 <div class="card card-topline-aqua">
                                     <div class="card-body no-padding height-9">
                                         
@@ -158,13 +151,25 @@
 																		?>
 																		</select>
 																</div>
+
+																<div class="form-group">
+																		<label>Select language</label>
+																		<select class="form-control" name="language" required >
+																		<option value="">Select language</option>
+																		 <option value="eng">English</option>
+																		 <option value="tel">Telgu</option>
+																		</select>
+																</div>
+
 																<div class="form-group">
 																		<label>Title</label>
 																		<input type="text" name="title" class="form-control" required >
 																</div>
 																<div class="form-group">
 																		<label>Description</label>
-																		<input type="text" name="desc" class="form-control" required >
+																		<br>
+																		<textarea id="desc" name="desc" rows="4" cols="135"> </textarea>
+																		
 																</div>
 																<div class="form-group">
 																		<label>Source Name</label>
